@@ -14,6 +14,23 @@ public class sorting {
     private static int random;
     
     private static int n;
+    
+    private static void insertSort(int low, int high) {
+    	int si = low;  // Stands for sorted index.  Keeps track of how much is sorted.
+    	// Until the array is sorted from low to high, keep doing insertions.
+    	while (si < high) {
+    		int i = si + 1;    // i keeps track of where the 'hole' to insert is.
+    		int valToInsert = arr[i];    // Store the new value to insert.
+    		// Until the 'hole' is at the lowest index or valToInsert is greater than 
+    		// the value before the 'hole', shift the elements of the array right, moving the hole left.
+    		while (i > low && arr[i - 1] > valToInsert) {
+    			arr[i] = arr[i - 1];
+    			i--;
+    		}
+    		arr[i] = valToInsert;
+    		si++;
+    	}
+    }
 
     private static void printArray() {
     	System.out.print("[" + arr[0]);
@@ -180,6 +197,15 @@ public class sorting {
             if (size < 101) printArray();
             long finish = System.currentTimeMillis();
             System.out.println("Arrays.sort: " + (finish-start) + " milliseconds.");
+            arr = arrCopy;
+            
+            // Insertion sort     
+            start = finish;
+            insertSort(0, size-1);
+            if (size < 101) printArray();
+            finish = System.currentTimeMillis();
+            System.out.println("insertsort: " + (finish-start) + " milliseconds.");
+            arr = arrCopy;
             
             // Heap sort      
             start = finish;
@@ -187,6 +213,7 @@ public class sorting {
             if (size < 101) printArray();
             finish = System.currentTimeMillis();
             System.out.println("heapsort: " + (finish-start) + " milliseconds.");
+            arr = arrCopy;
  
             // Quick sort
             start = finish;
@@ -195,6 +222,7 @@ public class sorting {
             if (size < 101) printArray();
             finish = System.currentTimeMillis();
             System.out.println("quicksort: " + (finish-start) + " milliseconds.");
+            arr = arrCopy;
             
             // Merge sort, which destroys arrCopy[].
             start = finish;
