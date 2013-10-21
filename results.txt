@@ -1,32 +1,45 @@
-Below is the output of running the file 'sorting.java'.  The JVM ran out of available space when arrays of size 50,000,000 were used (this also occurred when an array of that size was entered into the original program supplied by the professor).  The values listed were the average time to sort for each algorithm on the given array size (averaged over 10 trials, each algorithm using the same array each time).  The A, B, C, etc. indications refer to the implementations described in problems 3(a), 3(b), 3(c), 5(a), 5(b), etc.
+Below is the output of running the file 'sorting.java'.  The JVM in Eclipse ran out of available space when arrays of size 50,000,000 were used (this also occurred when an array of that size was entered into the original program supplied by the professor), but running from command line with increased heap space was able to handle these arrays.  The values listed were the average time to sort for each algorithm on the given array size (averaged over 10 trials, each algorithm using the same array each time).  The A, B, C, etc. indications refer to the implementations described in problems 3(a), 3(b), 3(c), 5(a), 5(b), etc.
 
-From these trials, we can conclude that performing a check for existing order is a great benefit to both mergesort and quicksort, as the average time taken in both cases was ~2% of the time taken by the naive method.  This could be the case because checking for existing order is likely cheap if the subarray is disordered (it is likely to quickly find an unordered element) but can save many recursive calls on small subarrays where existing order is likely.
+From these trials, we can conclude that quicksort generally performs better than mergesort on random lists (presumably very disordered), and that of the modifications made, the only one that seems to increase performance is the use of insertsort for small subarrays during mergesort.  Finally, Arrays.sort appears to perform better than any of the algorithms we implemented.
 
 Below here is the output of the program.
 
 For an array size of 1000000:
-mergesort: 62 milliseconds
-mergesortA: 30 milliseconds
-mergesortB: 1 milliseconds
-mergesortC: 0 milliseconds
-quicksort: 38 milliseconds
-quicksortA: 38 milliseconds
-quicksortB: 0 milliseconds
-quicksortC: 38 milliseconds
-quicksortD: 39 milliseconds
-quicksortE: 0 milliseconds
-quicksortF: 1 milliseconds
+Arrays.sort: 88 milliseconds
+mergesort: 139 milliseconds
+mergesortA: 117 milliseconds
+mergesortB: 142 milliseconds
+mergesortC: 141 milliseconds
+quicksort: 90 milliseconds
+quicksortA: 91 milliseconds
+quicksortB: 93 milliseconds
+quicksortC: 90 milliseconds
+quicksortD: 92 milliseconds
+quicksortE: 91 milliseconds
+quicksortF: 89 milliseconds
 For an array size of 10000000:
-mergesort: 564 milliseconds
-mergesortA: 354 milliseconds
-mergesortB: 9 milliseconds
-mergesortC: 8 milliseconds
-quicksort: 445 milliseconds
-quicksortA: 446 milliseconds
-quicksortB: 8 milliseconds
-quicksortC: 447 milliseconds
-quicksortD: 451 milliseconds
-quicksortE: 9 milliseconds
-quicksortF: 8 milliseconds
-Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
-	at sorting.main(sorting.java:424)
+Arrays.sort: 717 milliseconds
+mergesort: 1542 milliseconds
+mergesortA: 1289 milliseconds
+mergesortB: 1560 milliseconds
+mergesortC: 1542 milliseconds
+quicksort: 941 milliseconds
+quicksortA: 936 milliseconds
+quicksortB: 949 milliseconds
+quicksortC: 949 milliseconds
+quicksortD: 956 milliseconds
+quicksortE: 942 milliseconds
+quicksortF: 949 milliseconds
+For an array size of 50000000:
+Arrays.sort: 4435 milliseconds
+mergesort: 8047 milliseconds
+mergesortA: 6940 milliseconds
+mergesortB: 8152 milliseconds
+mergesortC: 8137 milliseconds
+quicksort: 4859 milliseconds
+quicksortA: 4853 milliseconds
+quicksortB: 4838 milliseconds
+quicksortC: 4911 milliseconds
+quicksortD: 4911 milliseconds
+quicksortE: 4854 milliseconds
+quicksortF: 4846 milliseconds
